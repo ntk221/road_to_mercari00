@@ -9,8 +9,6 @@ import (
 // func MkdirAll(path string, perm FileMode) error
 // func WriteFile(name string, data []byte, perm FileMode) error
 
-
-
 func TestListFiles(t *testing.T) {
 	dir := "/tmp/testdir"
 	files := []string{
