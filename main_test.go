@@ -18,7 +18,7 @@ func TestMain(t *testing.T) {
 	defer os.RemoveAll(testDir)
 
 	// テスト用ファイルを作成
-	testFiles := []string{"testfile1.txt", "testfile2.txt", "testfile3.txt"}
+	testFiles := []string{"testfile1.jpg", "testfile2.png"}
 	for _, filename := range testFiles {
 		file, err := os.Create(testDir + "/" + filename)
 		if err != nil {

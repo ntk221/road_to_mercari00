@@ -26,6 +26,13 @@ func main() {
 		files = append(files, dirFiles...)
 	}
 
+	for _, file := range files {
+		if !fileutil.ValidateFileExtension(file, []string{"jpg", "png"}) {
+			fmt.Errorf("invalid file extension: %s", file)
+			os.Exit(1)
+		}
+	}
+
 	// ファイルのパスを出力
 	for _, file := range files {
 		fmt.Println(file)
