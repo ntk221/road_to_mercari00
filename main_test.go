@@ -37,7 +37,7 @@ func TestMain(t *testing.T) {
 		t.Fatal(err)
 	}
 	output := stdout.String()
-	if !strings.Contains(output, "testdir/testfile1.txt") || !strings.Contains(output, "testdir/testfile2.txt") || !strings.Contains(output, "testdir/testfile3.txt") {
+	if !strings.Contains(output, "testdir/testfile1.jpg") || !strings.Contains(output, "testdir/testfile2.png") {
 		t.Fatalf("Unexpected output: %s", output)
 	}
 }

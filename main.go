@@ -27,8 +27,8 @@ func main() {
 	}
 
 	for _, file := range files {
-		if !fileutil.ValidateFileExtension(file, []string{"jpg", "png"}) {
-			fmt.Errorf("invalid file extension: %s", file)
+		if !fileutil.ValidateFileExtension(file, []string{".jpg", ".png"}) {
+			fmt.Fprintf(os.Stderr, "error: %s is not a valid file", file)
 			os.Exit(1)
 		}
 	}
