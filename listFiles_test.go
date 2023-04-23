@@ -1,9 +1,9 @@
 package main
 
 import (
-	"testing"
 	"os"
 	"path/filepath"
+	"testing"
 )
 
 // func MkdirAll(path string, perm FileMode) error
@@ -13,27 +13,44 @@ func TestListFiles(t *testing.T) {
 	dir := "/tmp/testdir"
 	files := []string{
 		dir + "/file1.txt",
+		dir + "/file2.txt",
+		dir + "/hoge/file2.txt",
+		dir + "/emptydir/",
 	}
 	for _, file := range files {
-		_ = os.MkdirAll(filepath.Dir(file), 0777)	
+		_ = os.MkdirAll(filepath.Dir(file), 0777)
 		_ = os.WriteFile(file, []byte(""), 0666)
 	}
 	defer os.RemoveAll(dir)
 
 	// テストケース
 	testCases := []struct {
-		name		string
-		dirPath		string
-		expected	[]string
-		expectErrors	bool
+		name         string
+		dirPath      string
+		expected     []string
+		expectErrors bool
 	}{
 		{
-			name: "all files in test directory",
+			name:    "all files in test directory",
 			dirPath: dir,
 			expected: []string{
-				"/tmp/testdir/file1.txt",
+				dir + "/file1.txt",
+				dir + "/file2.txt",
+				dir + "/hoge/file2.txt",
 			},
 			expectErrors: false,
+		},
+		{
+			name:         "empty directory",
+			dirPath:      "/tmp/testdir/emptydir",
+			expected:     []string{},
+			expectErrors: false,
+		},
+		{
+			name:         "non-existent directory",
+			dirPath:      "/tmp/nonexistentdir",
+			expected:     []string{},
+			expectErrors: true,
 		},
 	}
 	for _, tc := range testCases {
