@@ -1,9 +1,11 @@
-package main
+package fileutil_test
 
 import (
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/ntk221/road_to_mercari/fileutil"
 )
 
 // func MkdirAll(path string, perm FileMode) error
@@ -55,7 +57,7 @@ func TestListFiles(t *testing.T) {
 	}
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			files, err := listFiles(tc.dirPath)
+			files, err := fileutil.ListFiles(tc.dirPath)
 			if tc.expectErrors {
 				if err == nil {
 					t.Error("expected an error but got none")
